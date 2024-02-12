@@ -73,6 +73,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
       end
+      it 'priceは整数でないと登録できない' do
+        @item.price = 11.1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be an integer")
+      end
       it '出品したuserが紐づいていないと保存できない' do
         @item.user = nil
         @item.valid?
