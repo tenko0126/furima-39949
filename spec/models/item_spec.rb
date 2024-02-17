@@ -61,29 +61,28 @@ RSpec.describe Item, type: :model do
       it 'priceが¥300未満では登録できない' do
         @item.price = 200
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be in 300..9999999")
+        expect(@item.errors.full_messages).to include('Price must be in 300..9999999')
       end
       it 'priceが¥10000000以上だと登録できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be in 300..9999999")
+        expect(@item.errors.full_messages).to include('Price must be in 300..9999999')
       end
       it 'priceは半角数字でないと登録できない' do
         @item.price = '１２３４５６'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it 'priceは整数でないと登録できない' do
         @item.price = 11.1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be an integer")
+        expect(@item.errors.full_messages).to include('Price must be an integer')
       end
       it '出品したuserが紐づいていないと保存できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
-    
   end
 end
