@@ -8,3 +8,4 @@ window.addEventListener('turbo:load', () =>{
     profitDom.innerHTML = inputValue - addTaxDom.innerHTML;
   })
 });
+
